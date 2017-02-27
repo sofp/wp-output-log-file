@@ -1,4 +1,4 @@
-wp-output-log-file
+WP Output Log File
 ===============
 
-wp-output-log-file
+WP Output Log File

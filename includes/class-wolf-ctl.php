@@ -114,6 +114,15 @@ class WP_Output_Log_File_Controler {
 		return 'my-log-%Y%m%d.log';
 	}
 
+
+	/**
+	 * Befor set timerecord
+	 */
+	public function get_default_timerecord() {
+		return 'Y-m-d H:i:s:';
+	}
+
+
 	/**
 	 * check useable log file suffix on this plugin 
 	 */

@@ -131,18 +131,16 @@ class WP_Output_Log_File_Admin {
 		$new_input[ 'active' ] = isset( $input[ 'active' ] ) ? intval( $input[ 'active' ] ) : 0;
 		
 		if( isset( $input['filename'] ) )
-			$new_input['filename'] = sanitize_text_field( $input['filename'] );
+			$new_input['filename'] = sanitize_text_field( $input[ 'filename' ] );
 
 		if ( isset( $input[ 'log_file_dir' ] ) ) {
-			$dir = sanitize_text_field( trim($input['log_file_dir']));
+			$dir = sanitize_text_field( trim($input[ 'log_file_dir' ] ) );
 			$new_input['log_file_dir'] = $dir !== '' ? trailingslashit( $dir ) : $dir;
 		}
 
 		if ( isset( $input[ 'timerecord' ] ) ) {
 			$new_input[ 'timerecord' ] = sanitize_text_field( $input[ 'timerecord' ] );
 		}
-
-		
 		$new_input[ 'access_protect' ] = isset( $input[ 'access_protect' ] ) ? intval( $input[ 'access_protect' ] ) : 0;
 
 		
@@ -151,7 +149,7 @@ class WP_Output_Log_File_Admin {
 
 	public function active_callback() {
 		printf( '<input type="checkbox" name="wolf_options[active]" value="1" %s >',
-				checked( 1, isset($this->options['active']) ? intval($this->options['active']) : 0, false ));
+				checked( 1, isset($this->options['active']) ? intval( $this->options[ 'active' ] ) : 0, false ) );
 	}
 
 	public function log_file_dir_callback() {
@@ -182,8 +180,8 @@ class WP_Output_Log_File_Admin {
 	public function filename_callback() {
 		$filename = $this->file_controler->get_default_log_file_name();
 		
-		printf('<input type="text" class="regular-text" name="wolf_options[filename]" value="%s">',
-			   isset( $this->options['filename'] ) ? esc_attr( $this->options['filename'] ) : $filename);
+		printf( '<input type="text" class="regular-text" name="wolf_options[filename]" value="%s">',
+				isset( $this->options['filename'] ) ? esc_attr( $this->options['filename'] ) : $filename );
 
 
 		if ( isset( $this->options['filename'] ) && trim( $this->options['filename'] ) !== '' ) {
@@ -197,12 +195,14 @@ class WP_Output_Log_File_Admin {
 	 * Timerecord format input form
 	 */
 	public function timerecord_callback() {
-		printf('<input type="text" class="regular-text" name="wolf_options[timerecord]" value="%s" placeholder="ex. Y-m-d H:i:s">',
-			   isset( $this->options['timerecord'] ) ? esc_attr( $this->options['timerecord']) : ''
-		);
-		if (isset( $this->options['timerecord'] ) && trim($this->options['timerecord']) !== '') {
-			$head_time_record = date_i18n(trim($this->options['timerecord']));
-			printf('<p>beginning of a line: <code>%s</code></p>', $head_time_record);
+		$timerecord = $this->file_controler->get_default_timerecord();
+		
+		printf( '<input type="text" class="regular-text" name="wolf_options[timerecord]" value="%s" placeholder="ex. Y-m-d H:i:s">',
+				isset( $this->options['timerecord'] ) ? esc_attr( $this->options['timerecord']) : $timerecord );
+
+		if ( isset( $this->options['timerecord'] ) && trim( $this->options[ 'timerecord' ] ) !== '' ) {
+			$head_time_record = date_i18n( trim( $this->options[ 'timerecord' ] ) );
+			printf( '<p>beginning of a line: <code>%s</code></p>', $head_time_record );
 		}
 	}
 
@@ -214,7 +214,7 @@ class WP_Output_Log_File_Admin {
 			if ( $this->file_controler->set_protect_files() ) {
 				printf( '<p>Setted: <code>%s</code> and <code>%s</code></p>', 'index.php', '.htaccess' );
 			} else {
-				printf( '<p>Not Set: <code>%s</code></p>', $this->file_controler->get_log_file_dir());
+				printf( '<p>Not Set: <code>%s</code></p>', $this->file_controler->get_log_file_dir() );
 			}
 		}
 	}
@@ -241,7 +241,7 @@ class WP_Output_Log_File_Admin {
 	/**
 	 * log files remove action
 	 */
-	public function logfiles_remove_action($args) {
+	public function logfiles_remove_action( $args ) {
 		$file_controler = new WP_Output_Log_File_Controler();
 		$logfiles_dir = $file_controler->get_log_file_dir();
 
