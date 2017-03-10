@@ -127,9 +127,10 @@ class WP_Output_Log_File_Controler {
 	 * check useable log file suffix on this plugin 
 	 */
 	public function is_validate_suffix($filename) {
+		global $wp_output_log_file_use_suffix;
 		$file_name_info = pathinfo($filename);
 		if ( isset( $file_name_info['extension'] )
-			 &&in_array($file_name_info['extension'], WOLF_USE_SUFFIX, true)) {
+			 &&in_array($file_name_info['extension'], $wp_output_log_file_use_suffix, true)) {
 			return $filename;
 		}
 		return false;

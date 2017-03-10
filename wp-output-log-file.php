@@ -18,8 +18,8 @@ require_once( 'includes/class-wolf-ctl.php' );
 /**
  *  log file suffix is .log, .txt, .csv only.
  */
-define( 'WOLF_USE_SUFFIX', array( 'log', 'csv', 'txt' ) );
-
+// define( 'WOLF_USE_SUFFIX', array( 'log', 'csv', 'txt' ) );
+$wp_output_log_file_use_suffix =  array( 'log', 'csv', 'txt' );
 
 if ( ! function_exists( 'wo_log' ) ) :
 
