@@ -1,8 +1,9 @@
 === WP Output Log File ===
 Plugin Name: WP Output Log File
 Contributors: sofplant
-Tags: log, developer, 
+Tags: debug, debugging, log, developer, error
 Tested up to: 4.7.3
+Requires at least: 2.7
 Donate link: https://www.sofplant.com/
 
 License: GPLv2 or later
@@ -42,4 +43,5 @@ if ( function_exists( 'wo_log' ) ) {
 == Changelog ==
 = Version 1.0.1 =
 * Fixed: Compatibility with PHP 5.2 users
-* Change: menu name 
+* Change: Settings menu name to WP Output Log File
+* Change readme.txt
