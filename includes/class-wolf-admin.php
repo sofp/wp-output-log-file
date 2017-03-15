@@ -10,8 +10,8 @@ class WP_Output_Log_File_Admin {
 
 	const PAGE_ID = 'wp-output-log-file-page-id';
 	
-	private $options;
-	private $options2;
+	private $options;			// setting tab option
+	private $options2;			// manage tab option
 	
 	private $active_tab;
 
@@ -23,8 +23,8 @@ class WP_Output_Log_File_Admin {
 	}
 
 	public function add_plugin_page() {
-		$load_hook = add_options_page( 'Output Log File',
-									   'Output Log File',
+		$load_hook = add_options_page( 'WP Output Log File',
+									   'WP Output Log File',
 									   'manage_options',
 									   self::PAGE_ID,
 									   array( $this, 'admin_manage_page' ) );
@@ -49,7 +49,7 @@ class WP_Output_Log_File_Admin {
 		<form method="post" action="options.php">
 		<?php
 		// This prints out all hidden setting fields
-		if( $this->active_tab == 'tab_one' ) { 
+		if( 'tab_one' ===  (string)$this->active_tab ) { 
 			settings_fields( 'wolf_options_group' );
 			do_settings_sections( 'wolf_options' );
 
@@ -100,7 +100,7 @@ class WP_Output_Log_File_Admin {
 						   'wolf_setting_section');
 
 		add_settings_field('timerecord',
-						   'Time Record format',
+						   'Time Record Format',
 						   array( $this, 'timerecord_callback'),
 						   'wolf_options',
 						   'wolf_setting_section');
@@ -152,11 +152,14 @@ class WP_Output_Log_File_Admin {
 				checked( 1, isset($this->options['active']) ? intval( $this->options[ 'active' ] ) : 0, false ) );
 	}
 
+	/**
+	 * a log file Directory setting from
+	 */
 	public function log_file_dir_callback() {
 		
 		$log_dir_value = '';
 		
-		if (isset( $this->options['log_file_dir'] )) {
+		if (isset( $this->options['log_file_dir'] ) && "" !== trim( $this->options['log_file_dir'] ) ) {
 			$log_dir_value = $this->options['log_file_dir'];
 		} else {
 			$log_dir_value = $this->file_controler->get_default_log_file_dir();
@@ -175,20 +178,16 @@ class WP_Output_Log_File_Admin {
 	}
 
 	/**
-	 * File Name input form
+	 * file name input form
 	 */
 	public function filename_callback() {
 		$filename = $this->file_controler->get_default_log_file_name();
-		
-		printf( '<input type="text" class="regular-text" name="wolf_options[filename]" value="%s">',
-				isset( $this->options['filename'] ) ? esc_attr( $this->options['filename'] ) : $filename );
 
-
-		if ( isset( $this->options['filename'] ) && trim( $this->options['filename'] ) !== '' ) {
-			// print currnt file name
-			printf( "<p>Output File:<code>%s</code></p>",
-					$this->file_controler->get_trans_dateformat_filename( $this->options[ 'filename' ] ) );
+		if ( isset( $this->options['filename'] ) && trim(  '' !== $this->options['filename'] ) ) {
+			$filename = esc_attr( $this->options['filename'] );
 		}
+		printf( '<input type="text" class="regular-text" name="wolf_options[filename]" value="%s">', $filename );
+		printf( "<p>Output File:<code>%s</code></p>", $this->file_controler->get_trans_dateformat_filename( $filename ) );
 	}
 
 	/**

@@ -2,20 +2,21 @@
 Plugin Name: WP Output Log File
 Contributors: sofplant
 Tags: log, developer, 
+Tested up to: 4.7.3
 Donate link: https://www.sofplant.com/
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-You can manage the output log file, specify output directory and file name, 
+This plugin can manage the output log file, specify output directory and file name, 
 download and delete files regardless of WP_DEBUG mode.
 
 == Description ==
 
-You can manage the output log file regardless of WP_DEBUG mode,
-and specify output directory and file name, download and delete files.
+Control the output log file regardless of WP_DEBUG mode.
+Specify output directory and file name, download and delete files.
 
-You can specify the date format as the file name, you can split the log every day and every month.
+And specify the date format as the file name, you can split the log every day and every month.
 
 
 == Installation ==
@@ -39,4 +40,6 @@ if ( function_exists( 'wo_log' ) ) {
 == Screenshots ==
 
 == Changelog ==
-
+= Version 1.0.1 =
+* Fixed: Compatibility with PHP 5.2 users
+* Change: menu name 
