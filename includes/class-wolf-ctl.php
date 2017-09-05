@@ -163,7 +163,7 @@ class WP_Output_Log_File_Controler {
 		$log_file_dir = $this->get_log_file_dir();
 		
 		if( $this->is_protectable_path( $log_file_dir )  && $this->is_log_dir_wriable() ) {
-			$index_file = '.index.php';
+			$index_file = 'index.php';
 			if ( ! file_exists( $log_file_dir . $index_file ) ) {
 				$file_content = '<?php 
 // Silence is golden.';

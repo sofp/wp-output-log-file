@@ -170,9 +170,9 @@ class WP_Output_Log_File_Admin {
 		if (isset( $this->options['log_file_dir'] )) {
 			// print current full path directory
 			if ( $this->file_controler->is_log_dir_wriable() ) {
-				printf( "<p>OK:<code>%s</code>: writable</p>", $this->file_controler->get_log_file_dir() );
+				printf( "<p>OK:<code>%s</code>: is writable</p>", $this->file_controler->get_log_file_dir() );
 			} else {
-				printf( "<p>NG:<code>%s</code>: not writable</p>", $this->file_controler->get_log_file_dir() );
+				printf( '<p class="error-message">NG:<code>%s</code>: is not writable</p>', $this->file_controler->get_log_file_dir() );
 			}
 		}
 	}

@@ -2,8 +2,9 @@
 Plugin Name: WP Output Log File
 Contributors: sofplant
 Tags: debug, debugging, log, developer, error
-Tested up to: 4.7.3
-Requires at least: 2.7
+Requires at least: 3.6
+Tested up to: 4.8.1
+Stable tag: 1.1.0
 Donate link: https://www.sofplant.com/
 
 License: GPLv2 or later
@@ -33,7 +34,9 @@ Just install from your WordPress "Plugins > Add New" screen and all will be well
 You can write customizing wordpress code ex. using theme functions.php file.
 
 if ( function_exists( 'wo_log' ) ) { 
-   wo_log( "Your message" );
+   wo_log( "Your message" ); // string
+
+   wo_log( ['a' => 1, 'b' => 2, 'c' => 3 ] ); // other data type
 }
 
 
@@ -41,7 +44,13 @@ if ( function_exists( 'wo_log' ) ) {
 == Screenshots ==
 
 == Changelog ==
-= Version 1.0.1 =
-* Fixed: Compatibility with PHP 5.2 users
-* Change: Settings menu name to WP Output Log File
+
+= 1.1.0 =
+* Change wo_log message paramater can any data type
+* Delete test file
+* Change write error message color
+
+= 1.0.1 =
+* Fixed Compatibility with PHP 5.2 users
+* Change Settings menu name to WP Output Log File
 * Change readme.txt

@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Output Log File
-Version: 1.0.1
+Version: 1.1.0
 Description: Manage log files plugin.
 Author: Reiji sato
 Author URI: http://www.sofplant.com
